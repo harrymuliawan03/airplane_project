@@ -1,6 +1,8 @@
 import 'package:airplane_project/features/choose_seat/presentasion/widgets/radio_button_item_widget.dart';
+import 'package:airplane_project/features/choose_seat/presentasion/widgets/seat_list_widget.dart';
 import 'package:airplane_project/shared/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ChooseSeatScreen extends StatelessWidget {
   const ChooseSeatScreen({super.key});
@@ -18,6 +20,7 @@ class ChooseSeatScreen extends StatelessWidget {
             children: [
               Header(),
               RadioButtonList(),
+              SelectSeat(),
             ]),
       ),
     );
@@ -47,46 +50,152 @@ class RadioButtonList extends StatefulWidget {
 }
 
 class _RadioButtonListState extends State<RadioButtonList> {
-  var available = true;
-  var selected = false;
-  var unavailable = false;
-
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 32),
-      child: Row(
+      child: const Row(
         children: [
           RadioButtonItemWidget(
-              isCheck: available,
-              text: 'Available',
-              onSelect: () {
-                setState(() {
-                  available = true;
-                  selected = false;
-                  unavailable = false;
-                });
-              }),
+            text: 'Available',
+            imageUrl: 'assets/icon_available.png',
+          ),
           RadioButtonItemWidget(
-              isCheck: selected,
-              text: 'Selected',
-              onSelect: () {
-                setState(() {
-                  available = false;
-                  selected = true;
-                  unavailable = false;
-                });
-              }),
+            text: 'Selected',
+            imageUrl: 'assets/icon_selected.png',
+          ),
           RadioButtonItemWidget(
-              isCheck: unavailable,
-              text: 'Unavailable',
-              onSelect: () {
-                setState(() {
-                  available = false;
-                  selected = false;
-                  unavailable = true;
-                });
-              })
+            text: 'Unavailable',
+            imageUrl: 'assets/icon_unavailable.png',
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class SelectSeat extends StatelessWidget {
+  const SelectSeat({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 30),
+      padding: const EdgeInsets.symmetric(
+        vertical: 30,
+        horizontal: 22,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18),
+        color: kWhiteColor,
+      ),
+      child: Column(
+        children: [
+          // NOTE SEAT
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Container(
+                height: 48,
+                width: 48,
+                child: Center(
+                  child: Text(
+                    'A',
+                    style: greyTextStyle.copyWith(
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: 48,
+                width: 48,
+                child: Center(
+                  child: Text(
+                    'B',
+                    style: greyTextStyle.copyWith(
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: 48,
+                width: 48,
+                child: Center(
+                  child: Text(
+                    '',
+                    style: greyTextStyle.copyWith(
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: 48,
+                width: 48,
+                child: Center(
+                  child: Text(
+                    'C',
+                    style: greyTextStyle.copyWith(
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: 48,
+                width: 48,
+                child: Center(
+                  child: Text(
+                    'D',
+                    style: greyTextStyle.copyWith(
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          // SEAT 1
+          const SeatListWidget(
+            numberSeat: '1',
+            seat1: true,
+            seat2: false,
+            seat3: false,
+            seat4: false,
+            isCheck: true,
+          ),
+          const SeatListWidget(
+            numberSeat: '2',
+            seat1: false,
+            seat2: true,
+            seat3: false,
+            seat4: false,
+            isCheck: true,
+          ),
+          const SeatListWidget(
+            numberSeat: '3',
+            seat1: false,
+            seat2: false,
+            seat3: true,
+            seat4: false,
+          ),
+          const SeatListWidget(
+            numberSeat: '4',
+            seat1: true,
+            seat2: false,
+            seat3: false,
+            seat4: true,
+          ),
+          const SeatListWidget(
+            numberSeat: '5',
+            seat1: true,
+            seat2: false,
+            seat3: false,
+            seat4: false,
+          ),
         ],
       ),
     );
